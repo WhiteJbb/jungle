@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>프로젝트 목록</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        background-color: #f8fafc;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        width: 100%;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        padding: 40px;
+        border: 1px solid #e2e8f0;
+      }
+
+      h1 {
+        text-align: center;
+        color: #1e293b;
+        margin-bottom: 32px;
+        font-size: 28px;
+        font-weight: 600;
+      }
+
+      .projects {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      }
+
+      .card {
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 24px;
+        background: #ffffff;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .card h3 {
+        margin: 0 0 12px;
+        font-size: 20px;
+        color: #1e293b;
+        font-weight: 600;
+      }
+
+      .card p {
+        color: #64748b;
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+
+      .meta {
+        color: #64748b;
+        font-size: 14px;
+        margin-top: 16px;
+        font-weight: 500;
+      }
+
+      .skills {
+        margin: 16px 0 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .skills li {
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        color: white;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      /* 기술별 예쁜 색상 */
+      .skills li:nth-child(1) {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .skills li:nth-child(2) {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+      .skills li:nth-child(3) {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      }
+      .skills li:nth-child(4) {
+        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      }
+      .skills li:nth-child(5) {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      }
+      .skills li:nth-child(6) {
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        color: #4a5568;
+      }
+      .skills li:nth-child(7) {
+        background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        color: #4a5568;
+      }
+      .skills li:nth-child(8) {
+        background: linear-gradient(135deg, #ff8a80 0%, #ea4c89 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>프로젝트 목록</h1>
+
+      <div id="projectList" class="projects"></div>
+    </div>
+
+    <script>
+      // JSON 데이터를 코드에 직접 포함
+      const projects = [
+        {
+          title: "물고기 별 출몰 위치 추적 앱",
+          description:
+            "낚시를 즐기는 사람들에게 물고기가 자주 출몰하는 구간을 알려주는 앱입니다.",
+          skills: ["HTML", "CSS", "JavaScript", "Java", "Python"],
+          duration: "3개월",
+        },
+        {
+          title: "최적 수면 시간 계산 앱",
+          description:
+            "현재 시간부터 언제까지 수면을 취해야 가장 개운하게 일어날 수 있는지 알려주는 앱입니다.",
+          skills: ["Python", "Flask", "JavaScript"],
+          duration: "6개월",
+        },
+        {
+          title: "자동차 소모품 주기 체크 앱",
+          description:
+            "자동차 소모품을 교체한 시기를 입력하면 교체해야 될 시기에 알림을 보내주는 앱.",
+          skills: ["C", "SQL"],
+          duration: "1개월",
+        },
+      ];
+
+      // 프로젝트 렌더링 함수
+      function renderProjects(projects) {
+        const container = document.getElementById("projectList");
+
+        let html = "";
+        for (const p of projects) {
+          const skillsHtml = p.skills.map((s) => `<li>${s}</li>`).join("");
+          html += `
+          <article class="card">
+            <h3>${p.title}</h3>
+            <p>${p.description}</p>
+            <ul class="skills">
+              ${skillsHtml}
+            </ul>
+            <p class="meta">예상 기간: ${p.duration}</p>
+          </article>
+        `;
+        }
+        container.innerHTML = html;
+      }
+
+      // 페이지 로드 시 바로 렌더링
+      renderProjects(projects);
+    </script>
+  </body>
+</html>
